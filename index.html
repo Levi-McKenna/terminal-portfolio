@@ -1,14 +1,27 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="">
     <head>
-
+        <title>Portfolio</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./main.css" />
+        <script src="./dist/resizeTermInput.js"></script>
     </head>
     <body>
         <header>
 
         </header>
         <main>
-
+            <div id="terminal-wrapper" class="terminal-wrapper">
+                <div class="terminal-program">
+                    <div id="terminal" class="terminal">
+                        <form class="terminal--prompt-input">
+                            <label class="terminal--prompt">[User@portfolio home]$ </label>
+                            <textarea id="focus-input"></textarea>
+                        </form>
+                    </div>
+                </div>
+                <script>alterTextAreaSize()</script>
+            </div>
         </main>
         <footer>
 

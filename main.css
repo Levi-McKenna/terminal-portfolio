@@ -1,8 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
 /* @ Variables */
+
+:root {
+    --term-font: "Ubuntu Sans Mono", serif;
+    --term-bg-color: #000000;
+    --term-text-color: #f0f6fc;
+    --bg-color: #010409;
+}
 
 /* -- */
 
 /* @ General Styles */
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: var(--term-font);
+    color: var(--term-text-color);
+}
+
+label {
+    margin: 0;
+    padding: 5px;
+}
+
+textarea {
+    background: transparent;
+    border: none;
+    padding-top: 5px;
+    font-family: var(--term-font);
+    font-size: 1em;
+    color: var(--term-text-color);
+    word-wrap: break-word;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+}
 
 /* -- */
 
@@ -12,12 +48,45 @@
 
 /* @ Site Styles */
 
-/* -- */
+.terminal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/* @ Page Styles */
+.terminal-program {
+    width: 70%;
+    height: 75%;
+    border: solid .5em var(--term-text-color);
+    border-radius: 1%;
+    font-size: 2em;
+}
+
+.terminal {
+    width: 100%;
+    height: 100%;
+    background-color: var(--term-bg-color); !important
+    overflow: scroll;
+}
+
+.terminal--prompt-input {
+    display: flex;
+}
+
+.terminal--prompt-input textarea {
+    flex: 2;
+}
 
 /* -- */
 
 /* @ Device Styles */
+
+@media (min-width: 1000px) {
+    .terminal-program {
+        font-size: 1em;
+    }
+}
 
 /* -- */

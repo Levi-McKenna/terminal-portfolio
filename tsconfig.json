@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "es6",
         "outDir": "dist",
         "noImplicitReturns": true,
         "noImplicitOverride": true,
         "noImplicitThis": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true
     },
     "include": ["scripts/*"]
