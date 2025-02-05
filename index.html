@@ -14,13 +14,17 @@
             <div id="terminal-wrapper" class="terminal-wrapper">
                 <div class="terminal-program">
                     <div id="terminal" class="terminal">
-                        <form class="terminal--prompt-input">
-                            <label class="terminal--prompt">[User@portfolio home]$ </label>
-                            <textarea id="focus-input"></textarea>
+                        <form>
+                            <label id="terminal--line" class="terminal--line">
+                                <div class="terminal--line--main">
+                                    <span class="terminal--line--prompt">[User@portfolio home]$ </span>
+                                    <textarea id="focus-input" class="terminal--line--input-main"></textarea>
+                                </div>
+                            </label>
                         </form>
                     </div>
                 </div>
-                <script>alterTextAreaSize()</script>
+                <script>terminalNewLine()</script>
             </div>
         </main>
         <footer>

@@ -28,12 +28,13 @@ label {
 textarea {
     background: transparent;
     border: none;
-    padding-top: 5px;
     font-family: var(--term-font);
     font-size: 1em;
     color: var(--term-text-color);
+    padding-top: 5px;
     word-wrap: break-word;
     resize: none;
+    overflow-y: hidden;
 }
 
 textarea:focus {
@@ -71,12 +72,21 @@ textarea:focus {
     overflow: scroll;
 }
 
-.terminal--prompt-input {
+.terminal--line--main {
     display: flex;
 }
 
-.terminal--prompt-input textarea {
+.terminal--line--prompt {
+    padding: 5px;
+}
+
+.terminal--line--input-main {
     flex: 2;
+    height: 1.25em;
+}
+
+.terminal--line textarea {
+    width: 100%;
 }
 
 /* -- */
