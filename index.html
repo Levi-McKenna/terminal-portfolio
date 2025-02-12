@@ -3,8 +3,10 @@
     <head>
         <title>Portfolio</title>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="./main.css" />
-        <script src="./dist/resizeTermInput.js"></script>
+        <script src="./dist/input.js"></script>
+        <script src="./dist/animations.js"></script>
     </head>
     <body>
         <header>
@@ -12,19 +14,28 @@
         </header>
         <main>
             <div id="terminal-wrapper" class="terminal-wrapper">
+                <!--
                 <div class="terminal-program">
                     <div id="terminal" class="terminal">
-                        <form>
-                            <label id="terminal--line" class="terminal--line">
-                                <div class="terminal--line--main">
-                                    <span class="terminal--line--prompt">[User@portfolio home]$ </span>
-                                    <textarea id="focus-input" class="terminal--line--input-main"></textarea>
-                                </div>
-                            </label>
+                        <form class="terminal--line">
+                            <div class="terminal--line--main">
+                                <span class="terminal--line--prompt">[User@portfolio home]$ </span>
+                                <textarea id="terminal--line--input-main"></textarea>
+                            </div>
+                            <textarea id="terminal--line--input-second"
+                                class="hidden"></textarea>
                         </form>
                     </div>
                 </div>
-                <script>terminalNewLine()</script>
+-->
+                <div class="terminal-program">
+                    <div id="terminal" class="terminal">
+                        <span class="terminal--line--prompt">[User@portfolio home]$ </span>
+                        <span id="inputFocus" class="terminal--line--input"></span>
+                    </div>
+                </div>
+                <script>animateCursor()</script>
+                <script>addInput()</script>
             </div>
         </main>
         <footer>
