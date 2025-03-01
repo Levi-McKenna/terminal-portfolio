@@ -11,8 +11,8 @@ function animateCursor() {
     }
 
     terminalInput.animate([
-        { borderRight: "solid 1em white" },
-        { borderRight: "solid 1em transparent" }
+        { borderRight: "solid .75em white" },
+        { borderRight: "solid .75em transparent" }
     ], {
             duration: 1000,
             easing: "steps(2, jump-both)", // each jump is half the time and the jump occurs at start and end
