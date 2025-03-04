@@ -13,7 +13,7 @@
 
         </header>
         <main>
-            <div id="terminal-wrapper" class="terminal-wrapper">
+            <div id="terminal-wrapper" class="terminal-program-wrapper">
                 <!--
                 <div class="terminal-program">
                     <div id="terminal" class="terminal">
@@ -30,10 +30,10 @@
 -->
                 <section class="terminal-program">
                     <div id="terminal" class="terminal">
-                        <span class="terminal--line--prompt">[User@portfolio home]$ </span>
-                        <span id="inputFocus" class="terminal--line--input"></span>
+                        <!-- Prompt is generated in JavaScript. -->
                     </div>
                 </section>
+                <script>newPrompt()</script>
                 <script>animateCursor()</script>
                 <script>addInput()</script>
             </div>

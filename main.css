@@ -14,8 +14,12 @@
 
 /* @ General Styles */
 
-body {
+body, div, span, p {
     margin: 0;
+    padding: 0;
+} 
+
+body {
     background-color: var(--bg-color);
     font-family: var(--term-font);
     color: var(--term-text-color);
@@ -59,7 +63,7 @@ textarea:focus {
 
 /* @ Site Styles */
 
-.terminal-wrapper {
+.terminal-program-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;

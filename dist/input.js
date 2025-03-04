@@ -1,7 +1,11 @@
 "use strict";
+const inputIdName = "inputFocus";
+/**
+ * Controls keyboard input for mouse and keyboard. Website will need a separate
+ * mobile friendly web page.
+ */
 function addInput() {
     document.addEventListener("keydown", (event) => {
-        const inputIdName = "inputFocus";
         const inputLine = document.getElementById(inputIdName);
         if (!inputLine)
             return;
@@ -21,9 +25,33 @@ function addInput() {
             case "Control":
                 // nothing
                 break;
+            case "Enter":
+                // create new line and pass command to interpreter
+                newPrompt();
+                break;
             default:
                 inputLine.textContent += event.key;
                 break;
         }
     });
+}
+const commandLine = `<span class="terminal--line--prompt">[User@portfolio home]$ </span>
+        <span id="inputFocus" class="terminal--line--input"></span>`;
+/**
+ * Creates a new prompt within the terminal for the user.
+ */
+function newPrompt() {
+    setTimeout(() => {
+        const terminal = document.getElementById("terminal");
+        if (terminal) {
+            // remove focusInput id from previous prompt
+            const focus = document.getElementById(inputIdName);
+            if (focus)
+                focus.id = "";
+            // add new prompt to terminal
+            let promptTemplate = document.createElement("div");
+            promptTemplate.innerHTML = commandLine;
+            terminal.appendChild(promptTemplate);
+        }
+    }, 400);
 }
