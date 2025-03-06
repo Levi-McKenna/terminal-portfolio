@@ -25,6 +25,9 @@ function addInput() {
             case "Control":
                 // nothing
                 break;
+            case "Shift":
+                // nothing
+                break;
             case "Enter":
                 // create new line and pass command to interpreter
                 newPrompt();
@@ -34,24 +37,4 @@ function addInput() {
                 break;
         }
     });
-}
-const commandLine = `<span class="terminal--line--prompt">[User@portfolio home]$ </span>
-        <span id="inputFocus" class="terminal--line--input"></span>`;
-/**
- * Creates a new prompt within the terminal for the user.
- */
-function newPrompt() {
-    setTimeout(() => {
-        const terminal = document.getElementById("terminal");
-        if (terminal) {
-            // remove focusInput id from previous prompt
-            const focus = document.getElementById(inputIdName);
-            if (focus)
-                focus.id = "";
-            // add new prompt to terminal
-            let promptTemplate = document.createElement("div");
-            promptTemplate.innerHTML = commandLine;
-            terminal.appendChild(promptTemplate);
-        }
-    }, 400);
 }
