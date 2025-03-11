@@ -20,6 +20,7 @@ function newPrompt() {
             let promptTemplate = document.createElement("div");
             promptTemplate.innerHTML = COMMAND_LINE;
             terminal.appendChild(promptTemplate);
+            slideTerminal(); // slide terminal window
 
             // switch focus to new element
             focus = document.getElementById(INPUT_ID);
@@ -28,6 +29,16 @@ function newPrompt() {
             animateCursor();
         }
     }, 400);
+}
+
+/**
+ * Slides terminal window to the bottom prompt 
+ */
+function slideTerminal() {
+    const terminal = document.getElementById("terminal");
+    if (terminal) {
+        terminal.scroll(0, terminal.scrollHeight);
+    }
 }
 
 /**
