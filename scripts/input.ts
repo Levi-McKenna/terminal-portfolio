@@ -26,6 +26,60 @@ function addInput() {
             case "Shift":
                 // nothing
                 break;
+            case "F1":
+                // nothing
+                break;
+            case "F2":
+                // nothing
+                break;
+            case "F3":
+                // nothing
+                break;
+            case "F4":
+                // nothing
+                break;
+            case "F5":
+                // nothing
+                break;
+            case "F6":
+                // nothing
+                break;
+            case "F7":
+                // nothing
+                break;
+            case "F8":
+                // nothing
+                break;
+            case "F9":
+                // nothing
+                break;
+            case "F10":
+                // nothing
+                break;
+            case "F11":
+                // nothing
+                break;
+            case "F12":
+                // nothing
+                break;
+            case "Home":
+                // nothing
+                break;
+            case "End":
+                // nothing
+                break;
+            case "PageUp":
+                // nothing
+                break;
+            case "PageDown":
+                // nothing
+                break;
+            case "Delete":
+                // nothing
+                break;
+            case "Meta":
+                // nothing
+                break;
             case "Enter":
                 // create new line and pass command to interpreter
                 parseCommand(getCommand());
