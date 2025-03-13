@@ -52,8 +52,6 @@ function getCommand() : string {
     return "";
 }
 
-// TODO - Fix option parsing. Code is a mess right now. It's what I get for not
-// practicing practically in weeks
 /**
  * Parse a command to its underlying program, options an arguments
  *
@@ -68,10 +66,27 @@ function parseCommand(command: string) {
     let stringLiteral: boolean = false;
     let optionLiteral: boolean = false;
     for (let i = 0; i < command.length; i++) {
-        if ((command[i] == " " || i == command.length - 1)
-                && !stringLiteral) {
-            if (start == i) continue; // ensure not parsing an empty slice
-            if (optionLiteral) { // prevent parsing options as args
+        // all edge cases for end of string when missing a arg delimiter
+        if (i == command.length - 1) {
+            if (optionLiteral) {
+                options.push(command[i]);
+                continue;
+            } else if (!program) {
+                program = command.trim();
+                continue;
+            } else if (command[i] != `"`) { // `"` handled by the stringLiteral branch
+                args.push(command.slice(start, i + 1));
+                continue;
+            } 
+        }
+
+
+        if (command[i] == " " && !stringLiteral) {
+            // ensure not parsing an empty slice
+            if (start == i) continue; 
+
+            // prevent parsing options as args
+            if (optionLiteral) { 
                 optionLiteral = false;
                 start = i + 1;
                 continue;
@@ -79,19 +94,19 @@ function parseCommand(command: string) {
 
             // program must be the first word
             if (start == 0) {
-                program = command.slice(0, i == command.length - 1 ? i + 1 : i);
+                program = command.slice(0, i);
                 start = i + 1;
                 continue;
             }
 
-            args.push(command.slice(start, i == command.length - 1 ? i + 1 : i));
+            args.push(command.slice(start, i));
             start = i + 1;
         } else if ((command[i] == `"` && !optionLiteral) ||
                     i == command.length - 1) { // indicate literal parsing
             // inverse whether a literal is being parsed
             stringLiteral = !stringLiteral; 
 
-            if (stringLiteral) start = i + 1; // start the arg at the beginning of a string delimiter
+            if (stringLiteral) start = i + 1; // start the arg at the ahead of the string delimiter
             else if (command[i] == `"`) { // if the character truly is the string delimiter then remove it
                 args.push(command.slice(start, i));
                 start = i + 1;
@@ -106,7 +121,6 @@ function parseCommand(command: string) {
         // when reading a list of options/flags
         if (optionLiteral) {
             options.push(command[i]);
-            i++;
             start = i;
             continue;
         }

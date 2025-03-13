@@ -64,22 +64,38 @@ function parseCommand(command) {
     let stringLiteral = false;
     let optionLiteral = false;
     for (let i = 0; i < command.length; i++) {
-        if ((command[i] == " " || i == command.length - 1)
-            && !stringLiteral) {
+        // all edge cases for end of string when missing a arg delimiter
+        if (i == command.length - 1) {
+            if (optionLiteral) {
+                options.push(command[i]);
+                continue;
+            }
+            else if (!program) {
+                program = command.trim();
+                continue;
+            }
+            else if (command[i] != `"`) {
+                args.push(command.slice(start, i + 1));
+                continue;
+            }
+        }
+        if (command[i] == " " && !stringLiteral) {
+            // ensure not parsing an empty slice
             if (start == i)
-                continue; // ensure not parsing an empty slice
-            if (optionLiteral) { // prevent parsing options as args
+                continue;
+            // prevent parsing options as args
+            if (optionLiteral) {
                 optionLiteral = false;
                 start = i + 1;
                 continue;
             }
             // program must be the first word
             if (start == 0) {
-                program = command.slice(0, i == command.length - 1 ? i + 1 : i);
+                program = command.slice(0, i);
                 start = i + 1;
                 continue;
             }
-            args.push(command.slice(start, i == command.length - 1 ? i + 1 : i));
+            args.push(command.slice(start, i));
             start = i + 1;
         }
         else if ((command[i] == `"` && !optionLiteral) ||
@@ -87,7 +103,7 @@ function parseCommand(command) {
             // inverse whether a literal is being parsed
             stringLiteral = !stringLiteral;
             if (stringLiteral)
-                start = i + 1; // start the arg at the beginning of a string delimiter
+                start = i + 1; // start the arg at the ahead of the string delimiter
             else if (command[i] == `"`) { // if the character truly is the string delimiter then remove it
                 args.push(command.slice(start, i));
                 start = i + 1;
@@ -103,7 +119,6 @@ function parseCommand(command) {
         // when reading a list of options/flags
         if (optionLiteral) {
             options.push(command[i]);
-            i++;
             start = i;
             continue;
         }
