@@ -85,6 +85,8 @@ textarea:focus {
     background-color: var(--term-bg-color) !important;
     font-size: .5em;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: gray transparent;
 }
 
 .terminal--line {

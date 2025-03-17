@@ -3,5 +3,5 @@ const programTable: Map<string, (args: string[], opts: string[]) => void> = new 
 ]);
 
 function name_(args: string[], opts: string[]) {
-    // TODO: Genreate some output to console
+    // TODO: Generate some output to console
 }
