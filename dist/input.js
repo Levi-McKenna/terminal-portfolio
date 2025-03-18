@@ -180,4 +180,32 @@ function parseCommand(command) {
     console.log("Program : " + program);
     console.log("Args : " + args);
     console.log("Options : " + options);
+    // print program output
+    printProgramOutput(program, args, options);
+}
+function printProgramOutput(program, args, opts) {
+    const terminal = document.getElementById("terminal");
+    if (terminal) {
+        const output = document.createElement("p");
+        // for any program that does not exist
+        if (!programTable || !programTable.has(program)) {
+            output.textContent = `Program: ${program} does not exist. <br> Use command "help" for more info.`;
+            output.style.color = "red";
+            terminal.appendChild(output);
+            return;
+        }
+        // here we are certain that the program exists within our table so we
+        // use the definite assertion modifier to calm our friendly neighborhood
+        // TypeScript
+        const result = programTable.get(program)(args, opts);
+        if (result.ok != "") {
+            output.textContent = result.ok;
+            output.style.color = "gray"; // add some personality to output
+        }
+        else if (result.err != "") {
+            output.textContent = result.err;
+            output.style.color = "red"; // red error text
+        }
+        terminal.appendChild(output);
+    }
 }
