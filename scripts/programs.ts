@@ -2,12 +2,15 @@ const programTable: Map<string, (args: string[], opts: string[]) => Result> = ne
     ["name", name_]
 ]);
 
+// Let it be known that within a string literal all white space matters in terms
+// of terminal output, including tabs and trailing spaces.
+
 function name_(args: string[], opts: string[]): Result {
     // program takes no arguments
     if (args[0]) {
         return {
             ok: "",
-            err: `Invalid argument(s) for program "name". Use command "help" for more info.`
+            err: `Invalid argument(s) for program "name". Use command "help" for more info. `
         };
     } 
 
@@ -19,10 +22,9 @@ function name_(args: string[], opts: string[]): Result {
 
     // no options / default case
     return {
-        ok: `
-            First Name: Levi <br>
-            Last Name: McKenna
-        `,
+        ok: 
+`        First Name: Levi 
+        Last Name: McKenna`,
         err: ""
     };
 }

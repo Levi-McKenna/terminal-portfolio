@@ -192,6 +192,8 @@ function printProgramOutput(program: string, args: string[], opts: string[]) {
     const terminal = document.getElementById("terminal");
     if (terminal) {
         const output = document.createElement("p");
+        // for css styles
+        output.className = "terminal--line--output";
 
         // for any program that does not exist
         if (!programTable || !programTable.has(program)) { 

@@ -187,6 +187,8 @@ function printProgramOutput(program, args, opts) {
     const terminal = document.getElementById("terminal");
     if (terminal) {
         const output = document.createElement("p");
+        // for css styles
+        output.className = "terminal--line--output";
         // for any program that does not exist
         if (!programTable || !programTable.has(program)) {
             output.textContent = `Program: ${program} does not exist. <br> Use command "help" for more info.`;
