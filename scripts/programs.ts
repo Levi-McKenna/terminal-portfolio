@@ -14,11 +14,34 @@ function name_(args: string[], opts: string[]): Result {
         };
     } 
 
-    opts.forEach((o) => {
-        switch (opts) {
-            // all control flows for different options
+    /*
+     * All options:
+     * h - (h)elp - prints usage explanations and suggestions
+     * f - (f)irst name - returns just the first name 
+     */
+    for (let o of opts) {
+        switch (o) {
+            case "h":
+                return {
+                    ok: 
+                    `
+Name Program (v.25.19.3)
+
+Usage:
+name -h\t\t Show this message
+name -f\t\t Prints the portfolio's first name`,
+                    err: ""
+                }
+                break;
+            case "f":
+                return {
+                    ok: 
+                    `   First Name: Levi`,
+                    err: ""
+                }
+                break;
         }
-    });
+    }
 
     // no options / default case
     return {
