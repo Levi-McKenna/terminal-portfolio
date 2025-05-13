@@ -11,20 +11,21 @@
         <script src="dist/programs.js"></script>
     </head>
     <body>
-        <header>
-
-        </header>
-        <main>
-            <div id="terminal-wrapper" class="terminal-program-wrapper">
-                <section class="terminal-program">
-                    <div id="terminal" class="terminal">
-                        <!-- Prompt is generated in JavaScript. -->
+        <div class="hdr-main-wrapper">
+            <header>
+            </header>
+            <main>
+                <div id="terminal-wrapper" class="terminal-program-wrapper">
+                    <div class="terminal-program">
+                        <div id="terminal" class="terminal">
+                            <!-- Prompt is generated in dynamically. -->
+                        </div>
                     </div>
-                </section>
-                <script>newPrompt()</script>
-                <script>addInput()</script>
-            </div>
-        </main>
+                    <script>newPrompt()</script>
+                    <script>addInput()</script>
+                </div>
+            </main>
+        </div>
         <footer>
 
         </footer>

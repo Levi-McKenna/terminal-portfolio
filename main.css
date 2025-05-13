@@ -30,25 +30,9 @@ label {
     padding: 5px;
 }
 
-.terminal--line textarea {
-    background: transparent;
-    border: none;
-    font-family: var(--term-font);
-    font-size: 1em;
-    color: var(--term-text-color);
-    /* Dynamic input line centering to prompt */
-    margin-top: calc(var(--terminal-line-top-spacing) - .25em);
-    margin-left: .5em;
-    margin-right: .5em;
-    word-wrap: break-word;
-    flex: 2;
-    line-height: 200%;
-    resize: none;
-    overflow-y: hidden;
-}
-
-textarea:focus {
-    outline: none;
+main {
+    /* take up the rest of the postive space */
+    flex-grow: 1;
 }
 
 /* -- */
@@ -63,9 +47,18 @@ textarea:focus {
 
 /* @ Site Styles */
 
-.terminal-program-wrapper {
-    width: 100vw;
+/* this keeps a consistent viewport upon visting the page with the header taking
+* its fixed height and the terminal taking the rest of the viewport */
+.hdr-main-wrapper {
     height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-program-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,7 +68,6 @@ textarea:focus {
     width: 70%;
     height: 75%;
     border: solid .25em var(--term-text-color);
-    border-radius: 2%;
     font-size: 2em;
 }
 
