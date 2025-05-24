@@ -1,31 +1,126 @@
+<!-- TODO - have a down arrow to point to terminal, experience tabs, project
+tabs, make the tabs clickable to some link -->
 <!DOCTYPE HTML>
-<html lang="en" xmlns="">
+<html lang="en">
     <head>
         <title>Portfolio</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="main.css" />
+        <!-- reset style sheet via https://github.com/necolas/normalize.css/-->
+        <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
         <script src="dist/input.js"></script>
         <script src="dist/animations.js"></script>
         <script src="dist/prompt.js"></script>
         <script src="dist/programs.js"></script>
     </head>
-    <body>
-        <div class="hdr-main-wrapper">
-            <header>
-            </header>
-            <main>
-                <div id="terminal-wrapper" class="terminal-program-wrapper">
-                    <div class="terminal-program">
-                        <div id="terminal" class="terminal">
-                            <!-- Prompt is generated in dynamically. -->
+    <body class="antialased">
+        <header>
+            <img class="hdr-port-logo" src="resources/imgs/port_logo_white.png" alt="Portfolio logo">
+            <nav>
+                <ul class="hdr-nav-list">
+                    <li><a href="">
+                        <img src="resources/imgs/github-mark-white.png"
+                            alt="github logo"
+                            width="24px" height="24px">
+                    </a></li>
+                    <li><a href="">
+                        <img src="resources/imgs/in-mark-white.png"
+                            alt="linkedin logo"
+                            width="24px" height="24px">
+                    </a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <article class="friendly-port">
+                <section class="synopsis">
+                    <h1 class="name-hdr"><a href="#">Levi McKenna</a></h1>
+                    <h4>Low-level | Full-Stack Engineer</h4>
+                    <p class="para-text">
+                        I specialize in writing low-abstraction application
+                        code and full-fledged websites.
+                    </p>
+                </section>
+                <section class="portfolio">
+                    <div class="cover-letter">
+                        <p class="para-text">
+                            I'm a developer passionate about building optimized,
+                            well-written, and interesting applications. <b>Thought
+                            provoking engineering problems</b> and tough
+                            architectural designs are my jam.  I love being an
+                            integral part of projects and showing off my skills
+                            with other team members.
+                        </p>
+                        <p class="para-text">
+                            Currently, I work at <b>West Virginia
+                            University at Parkersburg</b> as a help desk technician
+                            where I work to provide solutions to techincal
+                            issues to students and
+                            faculty alike. It's definitely not the most
+                            difficult of work, but I am constantly searching
+                            for a place to really prove myself and learn new
+                            things.
+                        </p>
+                        <p class="para-text">
+                            I've grown up in a smaller area
+                            than most and around here there isn't a lot to latch
+                            onto as a <b>hobby</b>. Only when the world of <b>software and
+                            electronics</b> were introduced to me in my early teens
+                            did I really find true passion in anything. For
+                            that, I hope to do great things in this field as an
+                            engineer, researcher or inventor.
+                        </p>
+                        <p class="para-text">
+                            In my free time, I frequent the gym, play
+                            games with friends, meddle with my <b>NeoVim</b> config,
+                            read books on physics; systems development;
+                            mathematics and other forms engineering, and, on
+                            occasion, I like to go bouldering.
+                        </p>
+                    </div>
+                    <div>
+                        <h2>Experience</h2>
+                        <div class="experience">
+                            <p class="timeline-text">2024 - Present</p>
+                            <div class="experience-name-desc">
+                                <h4 class="experience-hdr">Labtech at WVUP</h4>
+                                <p class="experience-para-text">I work here doing things
+                                    that are kinda fun.</p>
+                                <ul class="tags-list">
+                                    <li>
+                                        <div class="tags">Something</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="experience">
+                            <p class="timeline-text">2024 - Present</p>
+                            <div class="experience-name-desc">
+                                <h4 class="experience-hdr">Labtech at WVUP</h4>
+                                <p class="experience-para-text">I work here doing things
+                                    that are kinda fun.</p>
+                                <ul class="tags-list">
+                                    <li>
+                                        <div class="tags">Something</div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <script>newPrompt()</script>
-                    <script>addInput()</script>
+                </section>
+            </article>
+            <div id="terminal-wrapper" class="terminal-program-wrapper">
+                <div class="terminal-program">
+                    <div id="terminal" class="terminal">
+                        <!-- Prompt is generated in dynamically. -->
+                    </div>
                 </div>
-            </main>
-        </div>
+                <script>newPrompt()</script>
+                <script>addInput()</script>
+                <script src="dist/tabs.js"></script>
+            </div>
+        </main>
         <footer>
 
         </footer>

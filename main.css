@@ -7,22 +7,25 @@
     --term-bg-color: #000000;
     --term-text-color: #f0f6fc;
     --bg-color: #010409;
-    --terminal-line-top-spacing: 1%;
+    --para-text-color: #85898F;
+    --terminal-line-top-spacing: .25em;
+    --tag-bg-color: rgba(8, 84, 205, 0.5);
+    --tag-text-color: #00FFFF;
 }
 
 /* -- */
 
 /* @ General Styles */
 
-body, div, span, p {
-    margin: 0;
-    padding: 0;
-} 
+* {
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--bg-color);
     font-family: var(--term-font);
     color: var(--term-text-color);
+    overflow-x: hidden;
 }
 
 label {
@@ -30,9 +33,29 @@ label {
     padding: 5px;
 }
 
-main {
-    /* take up the rest of the postive space */
-    flex-grow: 1;
+header {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a,
+a:hover,
+a:after,
+a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* -- */
@@ -43,23 +66,98 @@ main {
     display: none;
 }
 
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.para-text {
+    color: var(--para-text-color);
+}
+
+.para-text b {
+    color: var(--term-text-color);
+}
+
+.timeline-text {
+    font-size: 0.75em;
+    color: var(--para-text-color);
+    line-height: 0;
+    margin: 0;
+}
+
+.tab-hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* -- */
 
 /* @ Site Styles */
 
-/* this keeps a consistent viewport upon visting the page with the header taking
-* its fixed height and the terminal taking the rest of the viewport */
-.hdr-main-wrapper {
-    height: 100vh;
-    width: 100vw;
+.hdr-port-logo {
+    margin-left: 2.5%;
+    width: 10%;
+}
+
+.hdr-nav-list {
+    height: 100%;
+    font-size: 1.25em;
+    list-style: none;
+    text-decoration: none;
     display: flex;
-    flex-direction: column;
+}
+
+.hdr-nav-list li {
+    margin: 0 1em 0 1em;
+}
+
+.friendly-port {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.25em;
+}
+
+.synopsis {
+    padding-bottom: 2em;
+}
+
+.cover-letter {
+    padding: 2em 0 2em 0;
+}
+
+/* experience tabs */
+.experience {
+    transition: background-color 0.25s;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.experience-para-text {
+    font-size: 0.8em;
+    color: var(--para-text-color);
+}
+
+.tags {
+    background-color: var(--tag-bg-color);
+    border-radius: 1em;
+    color: var(--tag-text-color);
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9em;
+    margin: 0 0.2em 0 0;
+    padding: 0.35em;
 }
 
 .terminal-program-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
+    display: none;
+    width: 100vw;
+    height: 100vh;
     justify-content: center;
     align-items: center;
 }
@@ -124,18 +222,47 @@ main {
 
 /* extra large screens, TVs */
 @media screen and (min-width: 1201px) {
+    .hdr-port-logo {
+        width: 2.5%;
+    }
+
+    .terminal-program-wrapper {
+        display: flex;
+    }
+
     .terminal {
         font-size: .75em;
     }
 
     /* increase the size of the border just a tad */
     .terminal-program {
-        border: solid .5em var(--term-text-color);
+        border: solid .25em var(--term-text-color);
+    }
+
+    .hdr-nav-list li {
+        margin: 0 1em 0 1em;
+    }
+
+    .hdr-nav-list {
+        display: flex;
+        justify-content: center;
     }
 }
 
 /* large screens and desktops */
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .hdr-port-logo {
+        width: 2.5%;
+    }
+
+    .hdr-port-logo {
+        width: 5%;
+    }
+
+    .terminal-program-wrapper {
+        display: flex;
+    }
+
     .terminal {
         font-size: .75em;
     }
@@ -143,18 +270,38 @@ main {
     /* increase the size of the border just a tad */
     .terminal-program {
         border: solid .25em var(--term-text-color);
+    }
+
+    .hdr-nav-list li {
+        margin: 0 1em 0 1em;
+    }
+
+    .hdr-nav-list {
+        display: flex;
     }
 }
 
 /* small screens, laptops */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .hdr-port-logo {
+        width: 5%;
+    }
+
     .terminal {
         font-size: .75em;
+    }
+
+    .terminal-program-wrapper {
+        display: flex;
     }
 
     /* increase the size of the border just a tad */
     .terminal-program {
         border: solid .25em var(--term-text-color);
+    }
+
+    .hdr-nav-list {
+        display: flex;
     }
 }
 

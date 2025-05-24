@@ -1,28 +1,30 @@
 "use strict";
 const programTable = new Map([
-    ["name", name_]
+    ["name", _name],
+    ["projects", _projects]
 ]);
-// Let it be known that within a string literal all white space matters in terms
+// Let it be known that within a template literal all white space matters in terms
 // of terminal output, including tabs and trailing spaces.
-function name_(args, opts) {
+function _name(args, opts) {
     // program takes no arguments
     if (args[0]) {
         return {
             ok: "",
-            err: `Invalid argument(s) for program "name". Use command "help" for more info. `
+            err: `Invalid argument(s) for program "name". Use command "name -h" for more info. `
         };
     }
     /*
      * All options:
      * h - (h)elp - prints usage explanations and suggestions
      * f - (f)irst name - returns just the first name
+     * l - (l)ast name - returns the last name
      */
     for (let o of opts) {
         switch (o) {
             case "h":
                 return {
                     ok: `
-Name Program (v.25.19.3)
+Name Program (v0.0.3)
 
 Usage:
 name -h\t\t Show this message
@@ -32,16 +34,37 @@ name -f\t\t Prints the portfolio's first name`,
                 break;
             case "f":
                 return {
-                    ok: `   First Name: Levi`,
+                    ok: `First Name: Levi`,
                     err: ""
+                };
+                break;
+            default:
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
                 };
                 break;
         }
     }
-    // no options / default case
+    // no options
     return {
-        ok: `        First Name: Levi 
-        Last Name: McKenna`,
+        ok: `
+First Name: Levi 
+Last Name: McKenna
+`,
+        err: ""
+    };
+}
+function _projects(args, opts) {
+    // no options
+    return {
+        ok: `
+Projects Program v0.0.1
+
+Some Projects
+other project 
+another project
+`,
         err: ""
     };
 }

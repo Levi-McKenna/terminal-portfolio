@@ -180,6 +180,7 @@ function parseCommand(command: string) {
         }
     }
 
+    // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
     console.log("Program : " + program);
     console.log("Args : " + args);
     console.log("Options : " + options);

@@ -177,6 +177,7 @@ function parseCommand(command) {
             continue;
         }
     }
+    // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
     console.log("Program : " + program);
     console.log("Args : " + args);
     console.log("Options : " + options);
@@ -191,7 +192,7 @@ function printProgramOutput(program, args, opts) {
         output.className = "terminal--line--output";
         // for any program that does not exist
         if (!programTable || !programTable.has(program)) {
-            output.textContent = `Program '${program}' does not exist. \n\tUse command "help" for more info.`;
+            output.textContent = `Program '${program}' does not exist. \n\tUse command 'help' for more info.`;
             output.style.color = "red";
             terminal.appendChild(output);
             return;
