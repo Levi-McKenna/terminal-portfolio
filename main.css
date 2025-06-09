@@ -11,6 +11,21 @@
     --terminal-line-top-spacing: .25em;
     --tag-bg-color: rgba(8, 84, 205, 0.5);
     --tag-text-color: #00FFFF;
+    --arrow-bg-color: rgba(30, 30, 30, 0.5);
+}
+
+/* -- */
+
+/* @ Keyframes */
+
+@keyframes bounce-up {
+    from {
+        translate: 0 0;
+    }
+
+    to {
+        translate: 0 -0.5em;
+    }
 }
 
 /* -- */
@@ -66,6 +81,10 @@ a:active {
     display: none;
 }
 
+.opacity-0 {
+    opacity: 0;
+}
+
 .opacity-50 {
     opacity: 0.5;
 }
@@ -81,13 +100,6 @@ a:active {
 
 .para-text b {
     color: var(--term-text-color);
-}
-
-.timeline-text {
-    font-size: 0.75em;
-    color: var(--para-text-color);
-    line-height: 0;
-    margin: 0;
 }
 
 .tab-hover {
@@ -115,6 +127,37 @@ a:active {
     margin: 0 1em 0 1em;
 }
 
+.term-arrow-wrapper {
+    display: none;
+    top: 3em;
+    right: 0.5em;
+    position: fixed;
+    transition: 0.25s opacity;
+}
+
+.arrow-to-term {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    transition: padding-top 0.25s;
+}
+
+.arrow-to-term:hover {
+    padding-top: 1em;
+}
+
+.arrow-attention-getter {
+    animation: 0.5s infinite alternate bounce-up;
+    background-color: var(--arrow-bg-color);
+    border-radius: 1em;
+    margin-right: 0.75em;
+    text-align: center;
+    transition: 0.25s opacity;
+    padding: 0.5em;
+    width: 15em;
+}
+
 .friendly-port {
     width: 95%;
     margin-left: auto;
@@ -130,17 +173,29 @@ a:active {
     padding: 2em 0 2em 0;
 }
 
-/* experience tabs */
-.experience {
+/* experience and project tabs */
+.tab {
     transition: background-color 0.25s;
     border-radius: 0.5em;
     padding: 1em;
     margin-bottom: 1em;
+    cursor: pointer;
 }
 
-.experience-para-text {
-    font-size: 0.8em;
+.timeline-text {
+    font-size: 0.75em;
     color: var(--para-text-color);
+    line-height: 0;
+    margin: 0;
+}
+
+.tab-para-text {
+    font-size: 0.95em;
+    color: var(--para-text-color);
+}
+
+.tab-content {
+    width: 50%;
 }
 
 .tags {
@@ -226,6 +281,22 @@ a:active {
         width: 2.5%;
     }
 
+    .term-arrow-wrapper {
+        display: flex;
+    }
+
+    .friendly-port {
+        display: flex;
+    }
+
+    .synopsis {
+        margin-right: 12em;
+    }
+
+    .tab {
+        display: flex;
+    }
+
     .terminal-program-wrapper {
         display: flex;
     }
@@ -259,6 +330,14 @@ a:active {
         width: 5%;
     }
 
+    .term-arrow-wrapper {
+        display: flex;
+    }
+
+    .tab {
+        display: flex;
+    }
+
     .terminal-program-wrapper {
         display: flex;
     }
@@ -285,6 +364,14 @@ a:active {
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     .hdr-port-logo {
         width: 5%;
+    }
+
+    .term-arrow-wrapper {
+        display: flex;
+    }
+
+    .tab {
+        display: flex;
     }
 
     .terminal {

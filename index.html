@@ -33,6 +33,12 @@ tabs, make the tabs clickable to some link -->
             </nav>
         </header>
         <main>
+            <div id="term-arrow"  class="term-arrow-wrapper">
+                <p id="attent-text" class="arrow-attention-getter">Checkout the cool CLI port of this portfolio!</p>
+                <button class="arrow-to-term">
+                    <svg fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M78.466,35.559L50.15,63.633L22.078,35.317c-0.777-0.785-2.044-0.789-2.828-0.012s-0.789,2.044-0.012,2.827L48.432,67.58 c0.365,0.368,0.835,0.563,1.312,0.589c0.139,0.008,0.278-0.001,0.415-0.021c0.054,0.008,0.106,0.021,0.16,0.022 c0.544,0.029,1.099-0.162,1.515-0.576l29.447-29.196c0.785-0.777,0.79-2.043,0.012-2.828S79.249,34.781,78.466,35.559z"></path> </g> </g></svg>
+                </button>
+            </div>
             <article class="friendly-port">
                 <section class="synopsis">
                     <h1 class="name-hdr"><a href="#">Levi McKenna</a></h1>
@@ -75,34 +81,51 @@ tabs, make the tabs clickable to some link -->
                             In my free time, I frequent the gym, play
                             games with friends, meddle with my <b>NeoVim</b> config,
                             read books on physics; systems development;
-                            mathematics and other forms engineering, and, on
+                            mathematics and other forms of engineering, and, on
                             occasion, I like to go bouldering.
                         </p>
                     </div>
                     <div>
                         <h2>Experience</h2>
-                        <div class="experience">
+                        <div class="tab experience">
                             <p class="timeline-text">2024 - Present</p>
-                            <div class="experience-name-desc">
+                            <div class="tab-content">
                                 <h4 class="experience-hdr">Labtech at WVUP</h4>
-                                <p class="experience-para-text">I work here doing things
-                                    that are kinda fun.</p>
+                                <p class="tab-para-text">
+                                    Worked with team members, students and staff
+                                    to resolve technical issues in works to
+                                    better students' experiences. Also, helped
+                                    to perform large scale move and
+                                    network configuration of new college building.
+                                </p>
                                 <ul class="tags-list">
                                     <li>
-                                        <div class="tags">Something</div>
+                                        <div class="tags">Ticketing Software</div>
+                                        <div class="tags">Teamwork</div>
+                                        <div class="tags">Communications</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="experience">
+                    </div>
+                    <div>
+                        <h2>Projects</h2>
+                        <div class="tab projects">
                             <p class="timeline-text">2024 - Present</p>
-                            <div class="experience-name-desc">
+                            <div class="tab-content">
                                 <h4 class="experience-hdr">Labtech at WVUP</h4>
-                                <p class="experience-para-text">I work here doing things
-                                    that are kinda fun.</p>
+                                <p class="tab-para-text">
+                                    Worked with team members, students and staff
+                                    to resolve technical issues in works to
+                                    better students' experiences. Also, helped
+                                    to perform large scale move and
+                                    network configuration of new college building.
+                                </p>
                                 <ul class="tags-list">
                                     <li>
-                                        <div class="tags">Something</div>
+                                        <div class="tags">Ticketing Software</div>
+                                        <div class="tags">Teamwork</div>
+                                        <div class="tags">Communications</div>
                                     </li>
                                 </ul>
                             </div>
@@ -118,8 +141,9 @@ tabs, make the tabs clickable to some link -->
                 </div>
                 <script>newPrompt()</script>
                 <script>addInput()</script>
-                <script src="dist/tabs.js"></script>
             </div>
+            <script src="dist/tabs.js"></script>
+            <script src="dist/navigation.js"></script>
         </main>
         <footer>
 
