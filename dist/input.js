@@ -203,7 +203,7 @@ function printProgramOutput(program, args, opts) {
         const result = programTable.get(program)(args, opts);
         if (result.ok != "") {
             output.textContent = result.ok;
-            output.style.color = "gray"; // add some personality to output
+            output.style.color = "white"; // add some personality to output
         }
         else if (result.err != "") {
             output.textContent = result.err;

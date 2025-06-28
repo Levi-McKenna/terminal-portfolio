@@ -112,7 +112,7 @@ a:active {
 
 .hdr-port-logo {
     margin-left: 2.5%;
-    width: 10%;
+    width: 3em;
 }
 
 .hdr-nav-list {
@@ -185,7 +185,6 @@ a:active {
 .timeline-text {
     font-size: 0.75em;
     color: var(--para-text-color);
-    line-height: 0;
     margin: 0;
 }
 
@@ -206,11 +205,17 @@ a:active {
 }
 
 .terminal-program-wrapper {
-    display: none;
+    display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+.terminal-disclaimer {
+    padding: 5em;
+    opacity: 0.5;
 }
 
 .terminal-program {
@@ -273,10 +278,6 @@ a:active {
 
 /* extra large screens, TVs */
 @media screen and (min-width: 1201px) {
-    .hdr-port-logo {
-        width: 3%;
-    }
-
     .term-arrow-wrapper {
         display: flex;
     }
@@ -288,21 +289,24 @@ a:active {
     .synopsis {
         /* set height to auto in flex-box for sticky */
         align-self: flex-start;
-        margin-right: 12em;
-        top: 20px;
+        flex: 1 0 25vw;
+        margin-right: 10em;
+        top: 5em;
         position: sticky;
     }
 
     .tab {
         display: flex;
+        flex-direction: column;
     }
+
+    .timeline-text {
+        flex: 0 0 auto;
+    }
+
 
     .tab-content {
-        width: 50%;
-    }
-
-    .terminal-program-wrapper {
-        display: flex;
+        width: 75%;
     }
 
     .terminal {
@@ -326,12 +330,17 @@ a:active {
 
 /* large screens and desktops */
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
-    .hdr-port-logo {
-        width: 2.5%;
+    .friendly-port {
+        display: flex;
     }
 
-    .hdr-port-logo {
-        width: 5%;
+    .synopsis {
+        /* set height to auto in flex-box for sticky */
+        align-self: flex-start;
+        margin-right: 10em;
+        flex: 1 0 25vw;
+        top: 5em;
+        position: sticky;
     }
 
     .term-arrow-wrapper {
@@ -340,14 +349,11 @@ a:active {
 
     .tab {
         display: flex;
+        flex-direction: column;
     }
 
-    .tab-content {
-        width: 50%;
-    }
-
-    .terminal-program-wrapper {
-        display: flex;
+    .timeline-text {
+        flex: 0 0 auto;
     }
 
     .terminal {
@@ -370,28 +376,22 @@ a:active {
 
 /* small screens, laptops */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .hdr-port-logo {
-        width: 5%;
-    }
-
     .term-arrow-wrapper {
         display: flex;
     }
 
     .tab {
         display: flex;
+        flex-direction: column;
     }
 
-    .tab-content {
-        width: 50%;
+    .timeline-text {
+        flex: 0 0 auto;
     }
+
 
     .terminal {
         font-size: .75em;
-    }
-
-    .terminal-program-wrapper {
-        display: flex;
     }
 
     /* increase the size of the border just a tad */

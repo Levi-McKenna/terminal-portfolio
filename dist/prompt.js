@@ -25,7 +25,7 @@ function newPrompt() {
             // set animation
             animateCursor();
         }
-    }, 400);
+    }, 200);
 }
 /**
  * Slides terminal window to the bottom prompt

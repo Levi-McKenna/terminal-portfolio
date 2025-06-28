@@ -31,14 +31,17 @@ Name Program (v0.0.3)
 
 Usage:
 name -h\t\t Show this message
-name -f\t\t Prints the portfolio's first name`,
+name -f\t\t Prints the portfolio's first name
+`,
                     err: ""
                 }
                 break;
             case "f":
                 return {
                     ok: 
-                    `First Name: Levi`,
+`
+First Name: Levi
+`,
                     err: ""
                 }
                 break;
@@ -63,16 +66,156 @@ Last Name: McKenna
 }
 
 function _projects(args: string[], opts: string[]): Result {
+    const projectStrings: string[] = 
+        [
+`
+Bass-Master
+2023 - 2024
+-----------
+
+Bass-Master is a an alternate controller
+rhythm game project submitted to the SkillsUSA
+West Virginia state championship. My "team",
+(consisting of one other person! ha), won
+the state level competition and ended up
+moving to nationals. The project was really
+great fun, and I got to learn a lot. My
+teammate and I had a pretty tight deadline
+and that was invigorating; it was one of
+those projects that, at the time, felt like
+you could devote your entire life to.
+
+Technologies/Skills - rust, bevy-engine, music theory, bass, pitch detection
+----------------------------------------------------------------------------
+`,
+`
+Terminal-Portfolio v1.0
+2025
+-----------------------
+
+
+This is currently version 1.0 of my
+terminal-based portfolio (which you see in
+front of you!). As an aspiring 
+low-level developer, it was hard for me
+to think of a way to present myself 
+that I found would truly represent me as a
+developer. I wanted to prove that I could
+problem-solve in a lower-level systems environment and
+also make a decent looking, functional
+web page. Being a terminal-junkie, I
+thought: "what if I just make my own web-based
+command-line interpreter, take my portfolio
+and then just mash 'em together".                                
+
+
+This page was originally only meant to have the terminal
+as an interface, but I realize that not
+everyone has the time or the patience to learn
+to use the interpreter, so I also added the
+more friendly port you might be reading now!
+
+Technologies/Skills - typescript, html5, css3, javascript
+---------------------------------------------------------
+`,
+`
+Text-Based Zombies
+2024
+------------------
+
+
+This project was made as my final skills
+project for my intro to programming class.
+It was quite rushed, so there are
+probably quite a few concurrency bugs. 
+
+
+It was a little funny because I ended up
+doing too much on this project. The
+professors were annoyed (putting it lightly) 
+to have to grade it, but it was definitely worth 
+it. I got to have fun building something that I'm
+actually somewhat proud of, and that's all I
+can ask for.
+
+
+I don't currently see myself revisiting this 
+project. I may try to rewrite some parts of 
+the application to be more single-threaded 
+oriented because it's what I had originally 
+planned for the game. The only current 
+release of the game has only two levels:
+my test files. But, the current source code houses 4.
+
+Technologies/Skills - java, maven, serde, jdk23
+-----------------------------------------------------
+`
+        ];
+
+    for (let o of opts) {
+        switch (o) {
+            case 'h':
+                return {
+                    ok:
+`
+Projects Program v1.0
+
+Prints information of my previous or current projects.
+
+Usages:
+projects -h\t\t prints this page
+projects -i index\t index into the list of projects
+`,
+                    err: ""
+                };
+                break;
+            case 'i':
+                if (args.length < 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply a positive numerical argument(s) to option -i."
+                    };
+                } 
+
+                let out: string = "";
+                // sanitize the input and create output string
+                for (let a of args) {
+                    const idx = parseInt(a);
+                    if (isNaN(idx)) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be a number."
+                        };
+                    } else if (idx < 1 || idx > projectStrings.length) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be within the bounds of the number of projects."
+                        }
+                    }
+                    out = out.concat(projectStrings[idx - 1]);
+                }
+
+                return {
+                    ok: `${out}`, 
+                    err: ""
+                };
+                break;
+            default:
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
+                }
+                break;
+        }
+    }
 
     // no options
     return {
         ok: 
 `
-Projects Program v0.0.1
+Projects Program v1.0
 
-Some Projects
-other project 
-another project
+${projectStrings.join('')}
 `,
         err: ""
     }

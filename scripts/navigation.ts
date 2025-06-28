@@ -30,7 +30,6 @@ function termArrowOnHover(e: Event) {
  */
 function termArrowClick(e: Event) {
     console.assert(termArrow !== null, "arrow must not be null");
-    console.assert(e.target instanceof HTMLElement, "event must target an HTMLElement");
     console.assert(term !== null, "terminal must exist");
 
     term?.scrollIntoView({ behavior: "smooth" });
@@ -52,3 +51,5 @@ function termArrowScroll() {
 termArrow?.addEventListener("mouseenter", termArrowOnHover);
 termArrow?.addEventListener("click", termArrowClick);
 window.addEventListener("scroll", termArrowScroll);
+
+

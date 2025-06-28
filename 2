@@ -1,63 +1,71 @@
-"use strict";
-const programTable = new Map([
+const programTable: Map<string, (args: string[], opts: string[]) => Result> = new Map([
     ["name", _name],
     ["projects", _projects]
 ]);
+
 // Let it be known that within a template literal all white space matters in terms
 // of terminal output, including tabs and trailing spaces.
-function _name(args, opts) {
+
+function _name(args: string[], opts: string[]): Result {
     // program takes no arguments
     if (args[0]) {
         return {
             ok: "",
             err: `Invalid argument(s) for program "name". Use command "name -h" for more info. `
         };
-    }
+    } 
+
     /*
      * All options:
      * h - (h)elp - prints usage explanations and suggestions
-     * f - (f)irst name - returns just the first name
+     * f - (f)irst name - returns just the first name 
      * l - (l)ast name - returns the last name
      */
     for (let o of opts) {
         switch (o) {
             case "h":
                 return {
-                    ok: `
+                    ok: 
+                    `
 Name Program (v0.0.3)
 
 Usage:
 name -h\t\t Show this message
 name -f\t\t Prints the portfolio's first name`,
                     err: ""
-                };
+                }
                 break;
             case "f":
                 return {
-                    ok: `First Name: Levi`,
+                    ok: 
+                    `First Name: Levi`,
                     err: ""
-                };
+                }
                 break;
             default:
                 return {
                     ok: "",
                     err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
-                };
+                }
                 break;
         }
     }
+
     // no options
     return {
-        ok: `
+        ok: 
+`
 First Name: Levi 
 Last Name: McKenna
 `,
         err: ""
     };
 }
-function _projects(args, opts) {
-    const projectStrings = [
-        `
+
+function _projects(args: string[], opts: string[]): Result {
+    const projectStrings: string[] = 
+        [
+`
 Bass-Master
 2023 - 2024
 -----------
@@ -77,7 +85,7 @@ you could devote your entire life to.
 Technologies/Skills - rust, bevy-engine, music theory, bass, pitch detection
 ----------------------------------------------------------------------------
 `,
-        `
+`
 Terminal-Portfolio v1.0
 2025
 -----------------------
@@ -107,7 +115,7 @@ more friendly port you might be reading now!
 Technologies/Skills - typescript, html5, css3, javascript
 ---------------------------------------------------------
 `,
-        `
+`
 Text-Based Zombies
 2024
 ------------------
@@ -139,68 +147,58 @@ my test files. But, the current source code houses 4.
 Technologies/Skills - java, maven, serde, jdk23
 -----------------------------------------------------
 `
-    ];
+        ];
+
     for (let o of opts) {
         switch (o) {
             case 'h':
                 return {
-                    ok: `
+                    ok:
+`
 Projects Program v1.0
 
 Prints information of my previous or current projects.
 
 Usages:
 projects -h\t\t prints this page
-projects -i index\t index into the list of projects
+projects -i index\t\t index into the list of projects
 `,
                     err: ""
                 };
                 break;
             case 'i':
-                if (args.length < 1) {
+                if (args.entries() < 1) {
                     return {
                         ok: "",
-                        err: "Must supply a positive numerical argument(s) to option -i."
+                        err: "Must supply numerical argument(s) to option -i within the bounds of the number of projects."
+                    };
+                } 
+
+                else {
+                    return {
+                        ok: 
+`
+${projectStrings[args[0]]}
+`,
+                        err: ""
                     };
                 }
-                let out = "";
-                // sanitize the input and create output string
-                for (let a of args) {
-                    const idx = parseInt(a);
-                    if (isNaN(idx)) {
-                        return {
-                            ok: "",
-                            err: "Argument(s) must be a number."
-                        };
-                    }
-                    else if (idx < 1 || idx > projectStrings.length) {
-                        return {
-                            ok: "",
-                            err: "Argument(s) must be within the bounds of the number of projects."
-                        };
-                    }
-                    out = out.concat(projectStrings[idx - 1]);
-                }
-                return {
-                    ok: `${out}`,
-                    err: ""
-                };
                 break;
             default:
                 return {
                     ok: "",
                     err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
-                };
+                }
                 break;
         }
     }
-    // no options
     return {
-        ok: `
+        ok: 
+`
 Projects Program v1.0
 
 ${projectStrings.join('')}
 `,
         err: ""
-    };
+    }
 }

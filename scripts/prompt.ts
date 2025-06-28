@@ -28,7 +28,7 @@ function newPrompt() {
             // set animation
             animateCursor();
         }
-    }, 400);
+    }, 200);
 }
 
 /**

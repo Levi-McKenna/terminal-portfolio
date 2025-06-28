@@ -211,7 +211,7 @@ function printProgramOutput(program: string, args: string[], opts: string[]) {
 
         if (result.ok != "") {
             output.textContent = result.ok;
-            output.style.color = "gray"; // add some personality to output
+            output.style.color = "white"; // add some personality to output
         } else if (result.err != "") {
             output.textContent = result.err;
             output.style.color = "red"; // red error text

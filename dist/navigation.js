@@ -27,7 +27,6 @@ function termArrowOnHover(e) {
  */
 function termArrowClick(e) {
     console.assert(termArrow !== null, "arrow must not be null");
-    console.assert(e.target instanceof HTMLElement, "event must target an HTMLElement");
     console.assert(term !== null, "terminal must exist");
     term === null || term === void 0 ? void 0 : term.scrollIntoView({ behavior: "smooth" });
 }
