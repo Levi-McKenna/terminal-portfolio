@@ -106,6 +106,8 @@ function getCommand() : string {
     return "";
 }
 
+// TODO - Why the hell did I not use regex for this... Rewrite this.
+// like did I just forget that regex was a thing.
 /**
  * Parse a command to its underlying program, options an arguments
  *

@@ -23,7 +23,7 @@ function _name(args: string[], opts: string[]): Result {
      */
     for (let o of opts) {
         switch (o) {
-            case "h":
+            case 'h': {
                 return {
                     ok: 
                     `
@@ -36,7 +36,8 @@ name -f\t\t Prints the portfolio's first name
                     err: ""
                 }
                 break;
-            case "f":
+            }
+            case 'f': {
                 return {
                     ok: 
 `
@@ -45,12 +46,14 @@ First Name: Levi
                     err: ""
                 }
                 break;
-            default:
+            }
+            default: {
                 return {
                     ok: "",
                     err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
                 }
                 break;
+            }
         }
     }
 
@@ -154,7 +157,7 @@ Technologies/Skills - java, maven, serde, jdk23
 
     for (let o of opts) {
         switch (o) {
-            case 'h':
+            case 'h': {
                 return {
                     ok:
 `
@@ -165,21 +168,23 @@ Prints information of my previous or current projects.
 Usages:
 projects -h\t\t prints this page
 projects -i index\t index into the list of projects
+projects -s sstring\t search for projects via string matching or regular expressions
 `,
                     err: ""
                 };
                 break;
-            case 'i':
+            }
+            case 'i': {
                 if (args.length < 1) {
                     return {
                         ok: "",
-                        err: "Must supply a positive numerical argument(s) to option -i."
+                        err: "Must supply positive numerical argument(s) to option -i."
                     };
                 } 
 
                 let out: string = "";
                 // sanitize the input and create output string
-                for (let a of args) {
+                for (const a of args) {
                     const idx = parseInt(a);
                     if (isNaN(idx)) {
                         return {
@@ -200,12 +205,36 @@ projects -i index\t index into the list of projects
                     err: ""
                 };
                 break;
-            default:
+            }
+            case 's': {
+                if (args.length < 1 || args.length > 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply a single argument to option -s."
+                    };
+                } 
+
+                const regex = new RegExp(args[0]);
+                let out: string = "";
+                for (const proj of projectStrings) {
+                    if (regex.test(proj)) {
+                        out = out.concat(proj);
+                    }
+                }
+
+                return {
+                    ok: `${out}`,
+                    err: ""
+                }
+                break;
+            }
+            default: {
                 return {
                     ok: "",
                     err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
                 }
                 break;
+            }
         }
     }
 
