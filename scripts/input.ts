@@ -106,93 +106,125 @@ function getCommand() : string {
     return "";
 }
 
-// TODO - Why the hell did I not use regex for this... Rewrite this.
-// like did I just forget that regex was a thing.
+
 /**
  * Parse a command to its underlying program, options an arguments
  *
  * @param {string} command - full command from user input
  */
 function parseCommand(command: string) {
-    let program: string = "";
-    let options: string[] = [];
-    let args: string[] = [];
+    // remove unnecessary whitespace
+    command = command.trim();
 
-    let start: number = 0;
-    let stringLiteral: boolean = false;
-    let optionLiteral: boolean = false;
-    for (let i = 0; i < command.length; i++) {
-        // all edge cases for end of string when missing a arg delimiter
-        if (i == command.length - 1) {
-            if (optionLiteral) {
-                options.push(command[i]);
-                continue;
-            } else if (!program) {
-                program = command.trim();
-                continue;
-            } else if (command[i] != `"`) { // `"` handled by the stringLiteral branch
-                args.push(command.slice(start, i + 1));
-                continue;
-            } 
-        }
+    // regex patterns
+    const programRe = /(^\w+)|(?<=^")[\s|\w]+/g;
+    const optionsRe = /(?<=-\w*)\w/g;
+    const argsRe = /(?<=\s)\w+|(?<=\s")[\s|\w]+/g;
 
+    // matched values
+    const programArr: RegExpMatchArray | null = command.match(programRe);
+    const optionsArr: RegExpMatchArray | null = command.match(optionsRe);
+    const argsArr: RegExpMatchArray | null = command.match(argsRe);
 
-        if (command[i] == " " && !stringLiteral) {
-            // ensure not parsing an empty slice
-            if (start == i) continue; 
+    const program: string | undefined = programArr ? programArr.pop() : "";
+    const options: string[] = optionsArr ? optionsArr.slice() : [];
+    const args: string[] = argsArr ? argsArr.slice() : [];
 
-            // prevent parsing options as args
-            if (optionLiteral) { 
-                optionLiteral = false;
-                start = i + 1;
-                continue;
-            }
-
-            // program must be the first word
-            if (start == 0) {
-                program = command.slice(0, i);
-                start = i + 1;
-                continue;
-            }
-
-            args.push(command.slice(start, i));
-            start = i + 1;
-        } else if ((command[i] == `"` && !optionLiteral) ||
-                    i == command.length - 1) { // indicate literal parsing
-            // inverse whether a literal is being parsed
-            stringLiteral = !stringLiteral; 
-
-            if (stringLiteral) start = i + 1; // start the arg at the ahead of the string delimiter
-            else if (command[i] == `"`) { // if the character truly is the string delimiter then remove it
-                args.push(command.slice(start, i));
-                start = i + 1;
-            } else args.push(command.slice(start, i + 1)); // else we parse the argument to the end of the command
-
-            continue;
-        } else if (command[i] == "-" && !stringLiteral) {
-            optionLiteral = true;
-            continue;
-        }
-
-        // when reading a list of options/flags
-        if (optionLiteral) {
-            options.push(command[i]);
-            start = i;
-            continue;
-        }
-    }
-
-    // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
-    console.log("Program : " + program);
-    console.log("Args : " + args);
-    console.log("Options : " + options);
-
-    // print program output
-    printProgramOutput(program, args, options);
+     // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
+     console.log("Program : " + program);
+     console.log("Args : " + args);
+     console.log("Options : " + options);
+ 
+     // print program output
+     printProgramOutput(program || "undefined", args, options);
 }
+
+// /**
+//  * Parse a command to its underlying program, options an arguments
+//  *
+//  * @param {string} command - full command from user input
+//  */
+// function parseCommand(command: string) {
+//     let program: string = "";
+//     let options: string[] = [];
+//     let args: string[] = [];
+// 
+//     let start: number = 0;
+//     let stringLiteral: boolean = false;
+//     let optionLiteral: boolean = false;
+//     for (let i = 0; i < command.length; i++) {
+//         // all edge cases for end of string when missing a arg delimiter
+//         if (i == command.length - 1) {
+//             if (optionLiteral) {
+//                 options.push(command[i]);
+//                 continue;
+//             } else if (!program) {
+//                 program = command.trim();
+//                 continue;
+//             } else if (command[i] != `"`) { // `"` handled by the stringLiteral branch
+//                 args.push(command.slice(start, i + 1));
+//                 continue;
+//             } 
+//         }
+// 
+// 
+//         if (command[i] == " " && !stringLiteral) {
+//             // ensure not parsing an empty slice
+//             if (start == i) continue; 
+// 
+//             // prevent parsing options as args
+//             if (optionLiteral) { 
+//                 optionLiteral = false;
+//                 start = i + 1;
+//                 continue;
+//             }
+// 
+//             // program must be the first word
+//             if (start == 0) {
+//                 program = command.slice(0, i);
+//                 start = i + 1;
+//                 continue;
+//             }
+// 
+//             args.push(command.slice(start, i));
+//             start = i + 1;
+//         } else if ((command[i] == `"` && !optionLiteral) ||
+//                     i == command.length - 1) { // indicate literal parsing
+//             // inverse whether a literal is being parsed
+//             stringLiteral = !stringLiteral; 
+// 
+//             if (stringLiteral) start = i + 1; // start the arg at the ahead of the string delimiter
+//             else if (command[i] == `"`) { // if the character truly is the string delimiter then remove it
+//                 args.push(command.slice(start, i));
+//                 start = i + 1;
+//             } else args.push(command.slice(start, i + 1)); // else we parse the argument to the end of the command
+// 
+//             continue;
+//         } else if (command[i] == "-" && !stringLiteral) {
+//             optionLiteral = true;
+//             continue;
+//         }
+// 
+//         // when reading a list of options/flags
+//         if (optionLiteral) {
+//             options.push(command[i]);
+//             start = i;
+//             continue;
+//         }
+//     }
+// 
+//     // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
+//     console.log("Program : " + program);
+//     console.log("Args : " + args);
+//     console.log("Options : " + options);
+// 
+//     // print program output
+//     printProgramOutput(program, args, options);
+// }
 
 function printProgramOutput(program: string, args: string[], opts: string[]) {
     const terminal = document.getElementById("terminal");
+    if (program == '' || program == undefined) return;
     if (terminal) {
         const output = document.createElement("p");
         // for css styles
