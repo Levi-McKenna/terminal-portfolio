@@ -1,7 +1,8 @@
 "use strict";
 const programTable = new Map([
     ["name", _name],
-    ["projects", _projects]
+    ["projects", _projects],
+    ["experience", _experience],
 ]);
 // Let it be known that within a template literal all white space matters in terms
 // of terminal output, including tabs and trailing spaces.
@@ -24,7 +25,7 @@ function _name(args, opts) {
             case 'h': {
                 return {
                     ok: `
-Name Program (v0.0.3)
+Name Program (v1.0)
 
 Usage:
 name -h\t\t Show this message
@@ -62,6 +63,7 @@ Last Name: McKenna
     };
 }
 function _projects(args, opts) {
+    const projectsTag = "Projects Program (v1.0)";
     const projectStrings = [
         `
 Bass-Master
@@ -149,9 +151,15 @@ Technologies/Skills - java, maven, serde, jdk23
     for (let o of opts) {
         switch (o) {
             case 'h': {
+                if (args.length > 0) {
+                    return {
+                        ok: "",
+                        err: "No arguments should be passed to option of -" + o + "."
+                    };
+                }
                 return {
                     ok: `
-Projects Program v1.0
+${projectsTag}
 
 Prints information of my previous or current projects.
 
@@ -190,7 +198,11 @@ projects -s sstring\t search for projects via string matching or regular express
                     out = out.concat(projectStrings[idx - 1]);
                 }
                 return {
-                    ok: `${out}`,
+                    ok: `
+${projectsTag}
+
+${out}
+`,
                     err: ""
                 };
                 break;
@@ -210,7 +222,11 @@ projects -s sstring\t search for projects via string matching or regular express
                     }
                 }
                 return {
-                    ok: `${out}`,
+                    ok: `
+${projectsTag}
+
+${out}
+`,
                     err: ""
                 };
                 break;
@@ -218,7 +234,7 @@ projects -s sstring\t search for projects via string matching or regular express
             default: {
                 return {
                     ok: "",
-                    err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
+                    err: `Invalid option(s) -${o} for program "projects". Use the -h option for more info on usage.`
                 };
                 break;
             }
@@ -227,9 +243,125 @@ projects -s sstring\t search for projects via string matching or regular express
     // no options
     return {
         ok: `
-Projects Program v1.0
+${projectsTag}
 
 ${projectStrings.join('')}
+`,
+        err: ""
+    };
+}
+function _experience(args, opts) {
+    const experienceTag = "Experience Program (v1.0)";
+    const experienceStrings = [
+        `
+Labtech at WVUP
+2024 - Present
+-----------------------------------------------------------------
+
+Worked with team members, students and staff to resolve technical 
+issues in works to better students' experiences. Also, helped 
+to perform large scale move, lab, and network configuration of new college building.
+
+Technologies/Skills - ticketing software, teamwork, communications
+__________________________________________________________________
+`,
+    ];
+    for (const o of opts) {
+        switch (o) {
+            case 'h': {
+                if (args.length > 0) {
+                    return {
+                        ok: "",
+                        err: "Invalid arguments passed to option of -" + o + "."
+                    };
+                }
+                return {
+                    ok: `
+${experienceTag}
+
+Prints information of my previous and current experience.
+
+Usages: 
+experience -h\t\t prints this page
+experience -i index\t index into the list of my experience
+experience -s sstring\t search for experience via string matching or regular expressions
+`,
+                    err: ""
+                };
+                break;
+            }
+            case 'i': {
+                if (args.length < 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply positive numerical argument(s) to option -i."
+                    };
+                }
+                let out = "";
+                for (const a of args) {
+                    const idx = parseInt(a);
+                    if (isNaN(idx)) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be a number."
+                        };
+                    }
+                    if (idx < 1 || idx > experienceStrings.length) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be within the bounds of the number of projects."
+                        };
+                    }
+                    out = out.concat(experienceStrings[idx - 1]);
+                }
+                return {
+                    ok: `
+${experienceTag}
+
+${out}
+`,
+                    err: ""
+                };
+                break;
+            }
+            case 's': {
+                if (args.length < 0 || args.length > 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply a single argument to option -s."
+                    };
+                }
+                const regex = new RegExp(args[0]);
+                let out = "";
+                for (const es of experienceStrings) {
+                    if (regex.test(es)) {
+                        out = out.concat(es);
+                    }
+                }
+                return {
+                    ok: `
+${experienceTag}
+
+${out}
+`,
+                    err: ""
+                };
+                break;
+            }
+            default: {
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "exprience". Use the -h option for more info on usage.`
+                };
+                break;
+            }
+        }
+    }
+    return {
+        ok: `
+${experienceTag}
+
+${experienceStrings.join('')}
 `,
         err: ""
     };

@@ -1,6 +1,11 @@
+// TODO: for any index-able options have the default behavior ( as in no
+// arguments passed ) be to list the total number of items in the program
+
+
 const programTable: Map<string, (args: string[], opts: string[]) => Result> = new Map([
     ["name", _name],
-    ["projects", _projects]
+    ["projects", _projects],
+    ["experience", _experience],
 ]);
 
 // Let it be known that within a template literal all white space matters in terms
@@ -27,7 +32,7 @@ function _name(args: string[], opts: string[]): Result {
                 return {
                     ok: 
                     `
-Name Program (v0.0.3)
+Name Program (v1.0)
 
 Usage:
 name -h\t\t Show this message
@@ -40,7 +45,7 @@ name -f\t\t Prints the portfolio's first name
             case 'f': {
                 return {
                     ok: 
-`
+                    `
 First Name: Levi
 `,
                     err: ""
@@ -60,7 +65,7 @@ First Name: Levi
     // no options
     return {
         ok: 
-`
+        `
 First Name: Levi 
 Last Name: McKenna
 `,
@@ -69,9 +74,10 @@ Last Name: McKenna
 }
 
 function _projects(args: string[], opts: string[]): Result {
+    const projectsTag = "Projects Program (v1.0)";
     const projectStrings: string[] = 
         [
-`
+            `
 Bass-Master
 2023 - 2024
 -----------
@@ -91,7 +97,7 @@ you could devote your entire life to.
 Technologies/Skills - rust, bevy-engine, music theory, bass, pitch detection
 ----------------------------------------------------------------------------
 `,
-`
+            `
 Terminal-Portfolio v1.0
 2025
 -----------------------
@@ -121,7 +127,7 @@ more friendly port you might be reading now!
 Technologies/Skills - typescript, html5, css3, javascript
 ---------------------------------------------------------
 `,
-`
+            `
 Text-Based Zombies
 2024
 ------------------
@@ -158,10 +164,17 @@ Technologies/Skills - java, maven, serde, jdk23
     for (let o of opts) {
         switch (o) {
             case 'h': {
+                if (args.length > 0) {
+                    return {
+                        ok: "",
+                        err: "No arguments should be passed to option of -" + o + "."
+                    }
+                }
+
                 return {
                     ok:
 `
-Projects Program v1.0
+${projectsTag}
 
 Prints information of my previous or current projects.
 
@@ -201,7 +214,12 @@ projects -s sstring\t search for projects via string matching or regular express
                 }
 
                 return {
-                    ok: `${out}`, 
+                    ok: 
+`
+${projectsTag}
+
+${out}
+`, 
                     err: ""
                 };
                 break;
@@ -223,7 +241,12 @@ projects -s sstring\t search for projects via string matching or regular express
                 }
 
                 return {
-                    ok: `${out}`,
+                    ok: 
+`
+${projectsTag}
+
+${out}
+`,
                     err: ""
                 }
                 break;
@@ -231,7 +254,7 @@ projects -s sstring\t search for projects via string matching or regular express
             default: {
                 return {
                     ok: "",
-                    err: `Invalid option(s) -${o} for program "name". Use the -h option for more info on usage.`
+                    err: `Invalid option(s) -${o} for program "projects". Use the -h option for more info on usage.`
                 }
                 break;
             }
@@ -241,10 +264,140 @@ projects -s sstring\t search for projects via string matching or regular express
     // no options
     return {
         ok: 
-`
-Projects Program v1.0
+        `
+${projectsTag}
 
 ${projectStrings.join('')}
+`,
+        err: ""
+    }
+}
+
+function _experience(args: string[], opts: string[]): Result {
+    const experienceTag = "Experience Program (v1.0)";
+    const experienceStrings: string[] = 
+        [ 
+            `
+Labtech at WVUP
+2024 - Present
+-----------------------------------------------------------------
+
+Worked with team members, students and staff to resolve technical 
+issues in works to better students' experiences. Also, helped 
+to perform large scale move, lab, and network configuration of new college building.
+
+Technologies/Skills - ticketing software, teamwork, communications
+__________________________________________________________________
+`,
+        ]
+
+    for (const o of opts) {
+        switch (o) {
+            case 'h': {
+                if (args.length > 0) {
+                    return {
+                        ok: "",
+                        err: "Invalid arguments passed to option of -" + o + "."
+                    }
+                }
+
+                return {
+                    ok:
+`
+${experienceTag}
+
+Prints information of my previous and current experience.
+
+Usages: 
+experience -h\t\t prints this page
+experience -i index\t index into the list of my experience
+experience -s sstring\t search for experience via string matching or regular expressions
+`,
+                    err: ""
+                }
+                break;
+            }
+            case 'i': {
+                if (args.length < 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply positive numerical argument(s) to option -i."
+                    }
+                }
+
+                let out: string = "";
+                for (const a of args) {
+                    const idx: number = parseInt(a);
+                    if (isNaN(idx)) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be a number."
+                        }
+                    }
+                    if (idx < 1 || idx > experienceStrings.length) {
+                        return {
+                            ok: "",
+                            err: "Argument(s) must be within the bounds of the number of projects."
+                        }
+                    }
+                    out = out.concat(experienceStrings[idx - 1]);
+                }
+
+                return {
+                    ok:
+`
+${experienceTag}
+
+${out}
+`,
+                    err: ""
+                }
+                break;
+            }
+            case 's': {
+                if (args.length < 0 || args.length > 1) {
+                    return {
+                        ok: "",
+                        err: "Must supply a single argument to option -s."
+                    }
+                }
+
+                const regex = new RegExp(args[0]);
+                let out: string = "";
+                for (const es of experienceStrings) {
+                    if (regex.test(es)) {
+                        out = out.concat(es);
+                    }
+                }
+
+                return {
+                    ok: 
+`
+${experienceTag}
+
+${out}
+`,
+                    err: ""
+                }
+                break;
+            }
+            default: {
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "exprience". Use the -h option for more info on usage.`
+                }
+                break;
+            }
+
+        }
+    }
+
+    return {
+        ok:
+`
+${experienceTag}
+
+${experienceStrings.join('')}
 `,
         err: ""
     }

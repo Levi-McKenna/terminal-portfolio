@@ -2,7 +2,7 @@
  * This file defines the scripts for determining the user's operating system and
  * whether we should hide the terminal format. This is very much best effort as
  * sometimes it is unecessary to hide the terminal even within the certain mobile
- * operating systems; however, in most cases, a mobile user will not have a
+ * operating system; however, in most cases, a mobile user will not have a
  * physcial keyboard handy, so this is the most intuitive solution for now.
  */
 
