@@ -130,11 +130,6 @@ function parseCommand(command: string) {
     const options: string[] = optionsArr ? optionsArr.slice() : [];
     const args: string[] = argsArr ? argsArr.slice() : [];
 
-     // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
-     console.log("Program : " + program);
-     console.log("Args : " + args);
-     console.log("Options : " + options);
- 
      // print program output
      printProgramOutput(program || "undefined", args, options);
 }
@@ -213,7 +208,6 @@ function parseCommand(command: string) {
 //         }
 //     }
 // 
-//     // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
 //     console.log("Program : " + program);
 //     console.log("Args : " + args);
 //     console.log("Options : " + options);

@@ -1,11 +1,64 @@
 "use strict";
-//TODO - throw errors when args are passed to empty opts
 const programTable = new Map([
+    ["help", _help],
     ["whoami", _whoami],
     ["name", _name],
     ["projects", _projects],
     ["experience", _experience],
 ]);
+function _help(args, opts) {
+    const helpTag = "Help Program (v1.0)";
+    // return error when an arg is passed to a zero-opt call
+    if (args.length > 0) {
+        return {
+            ok: "",
+            err: `Invalid argument(s) for program "help". Use command "projects -h" for more info.`
+        };
+    }
+    for (const o of opts) {
+        switch (o) {
+            case 'h': {
+                return {
+                    ok: `
+${helpTag}
+
+Prints helpful tips and program of this terminal emulator.
+
+Usages:
+help   \t\t Prints helpful tips and programs of this terminal emulator
+help -h\t\t Prints this message
+`,
+                    err: ""
+                };
+                break;
+            }
+            default: {
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "help". Use the -h option for more info on usage.`
+                };
+                break;
+            }
+        }
+    }
+    return {
+        ok: `
+${helpTag}
+
+This terminal emulator/command-line interpreter, whatever you want to call it, takes much inspiration \
+from BASH in terms of parsing a command, so entering commands should feel familiar to most. 
+
+There are a lot of cool things I can do here; which is the reasoning I will use to justify giving just the basic \
+programs to start. If you're like me, then traversing this terminal will feel like exploring a cave. \
+I hope you are because this CLI should be fun! So, explore and enjoy! Oh, and watch for more updates \
+when I feel like making them!
+
+Programs:
+help, whoami, projects, experience, name
+`,
+        err: ""
+    };
+}
 function _whoami(args, opts) {
     const whoamiTag = "Whoami Program (v1.0)";
     if (args.length > 0) {
@@ -97,6 +150,12 @@ I specialize in writing low-abstraction application \
 code and fully-fledged websites.
 `,
                     err: ""
+                };
+            }
+            default: {
+                return {
+                    ok: "",
+                    err: `Invalid option(s) -${o} for program "whoami". Use the -h option for more info on usage.`
                 };
             }
         }
@@ -225,7 +284,7 @@ great fun, and I got to learn a lot. My \
 teammate and I had a pretty tight deadline \
 and that was invigorating; it was one of \
 those projects that, at the time, felt like \
-you could devote your entire life to. \
+you could devote your entire life to.
 
 Technologies/Skills - rust, bevy-engine, music theory, bass, pitch detection
 ----------------------------------------------------------------------------
@@ -390,7 +449,13 @@ ${out}
             }
         }
     }
-    // no options
+    // return error when an arg is passed to a zero-opt call
+    if (args.length > 0) {
+        return {
+            ok: "",
+            err: `Invalid argument(s) for program "projects". Use command "projects -h" for more info.`
+        };
+    }
     return {
         ok: `
 ${projectsTag}
@@ -511,6 +576,13 @@ ${out}
                 break;
             }
         }
+    }
+    // return error when an arg is passed to a zero-opt call
+    if (args.length > 0) {
+        return {
+            ok: "",
+            err: `Invalid argument(s) for program "experience". Use command "experience -h" for more info.`
+        };
     }
     return {
         ok: `
