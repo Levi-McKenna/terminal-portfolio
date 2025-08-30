@@ -22,7 +22,7 @@ function _help(args, opts) {
                     ok: `
 ${helpTag}
 
-Prints helpful tips and program of this terminal emulator.
+Prints helpful tips and programs of this terminal emulator.
 
 Usages:
 help   \t\t Prints helpful tips and programs of this terminal emulator

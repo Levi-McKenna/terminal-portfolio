@@ -14,7 +14,6 @@
  */
 function determinePlatform() {
     const userAgent = window.navigator.userAgent;
-    console.info(userAgent);
     return /Mobile/.test(userAgent);
 }
 /**

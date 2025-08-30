@@ -16,8 +16,6 @@ function alterTextHeight() {
 function onBackSpace(e) {
     const initialLine = document.getElementById(INITIAL_LINE_ID);
     const secondLine = document.getElementById(SECOND_LINE_ID);
-    // TODO: Decide between a dynamically styled <p> or continue with the
-    // <textarea> elements
 }
 function terminalLineInputHandler(e) {
     var _a;

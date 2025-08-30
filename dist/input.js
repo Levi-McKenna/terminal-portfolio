@@ -124,10 +124,6 @@ function parseCommand(command) {
     const program = programArr ? programArr.pop() : "";
     const options = optionsArr ? optionsArr.slice() : [];
     const args = argsArr ? argsArr.slice() : [];
-    // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
-    console.log("Program : " + program);
-    console.log("Args : " + args);
-    console.log("Options : " + options);
     // print program output
     printProgramOutput(program || "undefined", args, options);
 }
@@ -205,7 +201,6 @@ function parseCommand(command) {
 //         }
 //     }
 // 
-//     // TODOO - REMOVE DEBUGGING STUFF HELLS YEAH
 //     console.log("Program : " + program);
 //     console.log("Args : " + args);
 //     console.log("Options : " + options);
